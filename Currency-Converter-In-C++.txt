@@ -1,0 +1,113 @@
+SOURCE CODE:
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+
+{
+
+int moneyVal = 0; // Initial amount value
+
+char fromCur = ' ', doAgain = 'Y';  
+
+while (doAgain == 'Y') // this is to repeat again the operations if Y is chosen
+
+{
+
+// Here 5 countries are used. It can be enhanced based on the requirements
+
+cout << "Choose the currency of the country to be converted to US dollars?\n";  
+
+cout << "Enter I for India\n";  
+
+cout << "Enter S for Singapore\n";  
+
+cout << "Enter A for Australia\n";  
+
+cout << "Enter N for New Zealand\n";  
+
+cout << "Enter M for Malaysia\n";
+
+cin >> fromCur;  
+
+cout << "\nEnter the money value : ";  
+
+cin >> moneyVal;
+
+// Switch Case is used as it appears presentable. If statements can also be used
+
+switch(fromCur)
+
+{
+
+case 'I':
+
+//1 INR equals 0.015 USD
+
+cout << "\nYou have chosen Indian rupees\n";
+
+cout << moneyVal <<" Rupees = "<< moneyVal*0.015 <<" US Dollars";
+
+break;
+
+case 'S':
+
+//1 SGD equals 0.73 USD
+
+cout << "\nYou have chosen Singapore Dollars\n";
+
+cout << moneyVal <<" Singapore Dollars = "<< moneyVal*0.73 <<" US Dollars";
+
+break;
+
+case 'A':
+
+//1 AUD equals 0.77 USD
+
+cout << "\nYou have chosen Australia Dollars\n";
+
+cout << moneyVal <<" Australia Dollars = "<< moneyVal*0.77 <<" US Dollars";
+
+break;
+
+case 'N':
+
+//1 NZD equals 0.69 USD
+
+cout << "\nYou have chosen New Zealand Dollars\n";
+
+cout << moneyVal <<" New Zealand Dollars = "<< moneyVal*0.69 <<" US Dollars";
+
+break;
+
+case 'M':
+
+//1 MYR equals 0.24 USD
+
+cout << "\nYou have chosen Malaysia Ringgits\n";
+
+cout << moneyVal <<" Malaysia Ringgits = " << moneyVal*0.24 <<" US Dollars";
+
+break;
+
+default:
+
+//Displays an error message
+
+cout << "Sorry! You have chosen a wrong value";
+
+}
+
+cout << "\nDo you want to do again ( Y/N ) : ";  
+
+cin >> doAgain;
+
+}  
+
+cout << "\nGoodBye";
+
+return 0;
+
+}

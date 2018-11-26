@@ -1,0 +1,243 @@
+QUESTIONS
+Exercise 1: Finding the maximum value (5 points)
+
+int myMaximum(final int[] a, int curUsage);
+
+Provide an implementation of the myMaximum method in a class whose declaration is shown above. The first argument of the method is an array of int and the second argument is the number of ints that are in the array (the number of slots are actually used). The method returns the largest int that is in the array. The method returns Integer.MIN_VALUE if the array is empty.
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 2: Appending ArrayList (5 points)
+
+void appendArrayList(ArrayList<Integer> v, final ArrayList<Integer> w);
+
+Provide an implementation of the appendArrayList method in a class whose declaration is shown above. Both arguments of the method are ArrayLists of Integer. The method should modify ArrayList v by appending to it all the elements from w. For example, if v = (4, 2, 5) and w = (11, 3), thenv will become (4, 2, 5, 11, 3) as a result of calling the method.
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 3: Counting occurrences (5 points)
+
+int countOccurrences(final int[] v, int k);
+
+Implement the method countOccurrences in a class whose declaration appears above. The first argument of the method is an array v of integers and the second argument is an integer k. The method returns the number of times k occurs in v.
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 4: Two-dimensional Arrays (5 points)
+
+boolean isAllZeros(final int[][] a);
+
+Implement the method isAllZeros in a class that uses a loop nested inside another loop to determine whether a 2-dimensional array contains only zeros. A declaration of the method is shown above. The array passed into the method will have 10 rows and 20 columns. The method returns false if the array is empty
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 5: Identical Arrays (5 points)
+
+boolean areIdentical(final int[] a, final int[] b);
+
+Write a predicate method that checks whether two arrays are identical (contain exactly the same elements in the same order). A declaration of the method is shown above. The method returns true if the two arrays are identical (or both of them are empty); otherwise it returns false.
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 6: Calculating the Average Value (5 points)
+
+double myAverage (final int[] v);
+
+Implement a method that calculates the average value for all numbers in the array passed through its argument. The method returns 0.0 if the array is empty.
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 7: Ordered Arrays (5 points)
+
+boolean isStrictlyIncreasing(final int[] v);
+
+Write a predicate method called isStrictlyIncreasing that checks whether an array of integers contains values that are in strictly increasing order. A declaration of the method is shown above. The method returns true if the elements are in strictly increasing order; otherwise it returns false. For example, it will return true for v = (-2, 4, 5, 6, 8) and it will return false for (3, 4, 6, 6, 9).
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+Exercise 8: Reverse an Array (5 points)
+
+void reverseArray(int[] v);
+
+Write a method called reverseArray that reverses array elements so that the first element becomes the last element, the second element becomes the second to last element, and so on, with the old last element now first. Do not just reverse the order in which they are printed; actually change the way they are stored in the array. You cannot create a second array; just rearrange the elements within the array you have. (Hint: Swap elements that need to change places.)
+
+If you define this method in the same class containing static main method, you need to define it as a static method. Write test code that thoroughly tests the method.
+
+SOLUTION:
+SOURCE CODE
+
+package com.yourname;
+
+import java.util.ArrayList;
+
+public class OperationsApp {
+  
+private static int myMaximum(final int[] a, int curUsage) {
+   if(curUsage == 0) {
+       return Integer.MIN_VALUE; // Returns this if empty array
+   }
+   int max = 0;
+   for(int i = 0; i < a.length-1; i++) {
+   if(a[i] < a[i+1]) { // Checking if the element is greater than previous
+       max = a[i+1]; // If yes, max stores it
+   }
+   }
+   return max;
+}
+  
+private static void appendArrayList(ArrayList<Integer> v, final ArrayList<Integer> w) {
+   v.addAll(w); // Adds the arraylist to the current
+   System.out.println("\n" + "The ArrayList after appending " + v);
+}
+  
+private static int countOccurrences(final int[] v, int k) {
+   int count = 0;
+   for(int i = 0; i < v.length; i++) {
+   if(v[i] == k) {
+       ++count; // Counter to count
+   }
+   }
+   return count;
+}
+  
+private static boolean isAllZeros(final int[][] a) {
+  
+   if(a.length == 0) {
+       return false;
+   }
+   boolean zeros = false;
+   for(int i = 0; i < 10; i++) {
+       for(int j = 0; j < 20; j++) {
+       if(a[i][j] == 0) {
+           zeros = true;
+       }
+       }
+   }
+   return zeros;
+}
+  
+private static boolean areIdentical(final int[] a, final int[] b) {
+   if(a.length != b.length) {
+       return false;
+   }
+  
+   for(int i = 0; i < a.length; i++) {
+       if(a[i] != b[i]) {
+       return false;
+       }
+   }
+   return true;
+}
+  
+private static double myAverage (final int[] v) {
+   if(v.length == 0) {
+       return 0;
+   }
+   int sum = 0;
+   for(int i = 0; i < v.length; i++) {
+   sum = sum + v[i];
+   }
+   return (double)sum/v.length;
+}
+  
+private static boolean isStrictlyIncreasing(final int[] v) {
+   boolean isIncrease = false;
+   for(int i = 0; i < v.length-1; i++) {
+if(v[i] < v[i+1]) { // Checking if next element is bigger
+   isIncrease = true;
+}
+else {
+   isIncrease = false;
+}
+   }
+   return isIncrease;
+}
+  
+private static void reverseArray(int[] v) {
+   System.out.println("\n" + "The array before reversal");
+   for(int i = 0; i < v.length; i++) {
+   System.out.print(v[i] + " ");
+   }
+   //Swapping
+   for (int i = 0; i < v.length / 2; i++) {
+       int temp = v[i];
+       v[i] = v[v.length - 1 - i];
+       v[v.length - 1 - i] = temp;
+   }
+   System.out.println("\n" + "The array after reversal");
+   for(int i = 0; i < v.length; i++) {
+   System.out.print(v[i] + " ");
+   }
+}
+  
+public static void main(String[] args) {
+// Test the above methods with sample data
+   //Test 1 - Maximyum in array
+   final int[] arr = {1,5,3,7,5};
+   final int[] emptyArr = {};
+   int maxOfArr = myMaximum(arr,arr.length);
+   System.out.println("Maximum number in array is " + maxOfArr);
+   int maxOfEmptyArr = myMaximum(emptyArr,emptyArr.length);
+   System.out.println("Maximum number in empty array is " + maxOfEmptyArr);
+  
+   //Test 2 - Append arraylist
+   ArrayList<Integer> a = new ArrayList<>();
+   a.add(4);
+   a.add(2);
+   a.add(5);
+   final ArrayList<Integer> b = new ArrayList<>();
+   b.add(11);
+   b.add(3);
+   appendArrayList(a, b);
+  
+   //Test 3 - Counting occurences
+   int num = 5;
+   int noOfOcc = countOccurrences(arr, num);
+   System.out.println("\n\n" + "The number of occurences of " + num
+   + " is " + noOfOcc);
+  
+   //Test 4 - Is all zeros checking
+   int[][] zeroArr = new int[10][20];
+   for(int i = 0; i < 10; i++) {
+       for(int j = 0; j < 20; j++) {
+       zeroArr[i][j] = 0;
+       }
+   }
+   System.out.println("\n" + "Checking for zeros in a zeros array is "
+   + isAllZeros(zeroArr));
+   int[][] nonZeroArr = new int[10][20];
+   for(int i = 0; i < 10; i++) {
+       for(int j = 0; j < 20; j++) {
+       nonZeroArr[i][j] = 5;
+       }
+   }
+   System.out.println("Checking for zeros in non-zeros array is "
+           + isAllZeros(nonZeroArr));
+   int[][] emp2dArr = {};
+   System.out.println("Checking for zeros in empty array is "
+           + isAllZeros(emp2dArr));
+  
+   //Test 5 - Are arrays identical?
+   final int[] incArr = {1,2,3,4,5};
+   System.out.println("\n" + "While passing identical arrays, the result is "
+               + areIdentical(arr,arr));
+   System.out.println("While passing non-identical arrays, the result is "
+           + areIdentical(arr,incArr));
+   System.out.println("While passing empty arrays, the result is "
+           + areIdentical(emptyArr,emptyArr));
+  
+   //Test 6 - Average of arrays
+   System.out.println("\n" + "The average of the array is " + myAverage(arr));
+   System.out.println("Passing an empty array gives an average of "
+           + myAverage(emptyArr));
+  
+   //Test 7 - Is arrays increasing?
+   System.out.println("\n" + "While passing increasing array, the result is "
+   + isStrictlyIncreasing(incArr));
+   System.out.println("While passing non-increasing array, the result is "
+       + isStrictlyIncreasing(arr));
+  
+   //Test 8 - Reverse an array within it
+reverseArray(arr);
+}
+}

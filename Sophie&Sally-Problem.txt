@@ -1,0 +1,173 @@
+QUESTION
+Sophie and Sally are learning about money. Every once in a while, their parents will give them penny or shilling coins (no pounds at their age!). They each keep their money in a special purse, and their parents may ask them how many pence or shillings coins they have. (Note we're not interested in the monetary values, just the number of coins. Thus someone might have 25 shilling coins or 20 penny coins.) The interaction between the girls' parents and Sophie and Sally is similar to the following:
+
+Enter 1 for Sophie, 2 for Sally, or 0 to exit: 1
+
+Enter 1 to give pence, 2 to give shillings, 3 to query her purse: 1
+
+Enter the pence to give:3
+
+To get started, consider the following questions: What are the major nouns of the scenario? Sophie, Sally, parents, pence, shilling, coin, purse What are the relationships between these nouns? Sophie and Sally each have purses. Having a Daughter or Child object might be possible, but in this scenario the only thing interesting about Sophie and Sally is that they each have a purse. We can treat them as names of different purse objects (i.e., they are variables of type Purse). the parents are really just a euphemism for the user of the program. We have to interact with the user, but don't need a specific class. pence and shillings are coins, but they also just count something--the int data type will represent them just fine a purse contains pence and shillings, and we also need to add pence and shillings to a purse, and fetch its number of pence and shilling coins. This looks like an object. Write a program to implement this scenario. Use two classes. One class should contain a main method and manage the dialog with the user. The other class should represent a Purse. The design of the Purse class is up to you. Make sure that your instance variables are private, follow the naming conventions, etc.
+
+This program does not need a loop.
+
+SOLUTION:
+SOURCE CODE:
+
+Purse.java
+
+package com.yourname;
+
+public class Purse {
+
+// Two member variables
+
+private int pence;
+
+private int shilling;
+
+// Getters and Setters for adding and retrieving
+
+public int getPence() {
+
+return pence;
+
+}
+
+public void setPence(int pence) {
+
+this.pence = pence;
+
+}
+
+public int getShilling() {
+
+return shilling;
+
+}
+
+public void setShilling(int shilling) {
+
+this.shilling = shilling;
+
+}
+
+  
+
+// Fetch what the purse contains
+
+public void fetchPurse(String name,Purse obj) {
+
+System.out.println(name + "'s Purse contains:");
+
+System.out.println("Pence - " + obj.getPence());
+
+System.out.println("Shilling - " + obj.getShilling());
+
+}
+
+}
+
+CoinsApp.java
+
+package com.yourname;
+
+import java.util.Scanner;
+
+public class CoinsApp {
+
+public static void main(String[] args) {
+
+Scanner sc = new Scanner(System.in); // Scanner class for inputs
+
+Purse sophie = new Purse(); // Sophie object
+
+Purse sally = new Purse(); // Sally object
+
+String name = ""; // Store the name of choice
+
+System.out.println("Enter 1 for Sophie, 2 for Sally, or 0 to exit");
+
+int nameCh = sc.nextInt(); // 1st input
+
+if(nameCh == 0) {
+
+System.out.println("GoodBye");
+
+System.exit(0); // Exit
+
+}
+
+System.out.println("Enter 1 to give pence, 2 to give shillings, 3 to query her purse");
+
+int coinCh = sc.nextInt(); // 2nd Input
+
+int coinVal = 0; // Stores coins count
+
+if(nameCh == 1) {
+
+name = "Sophie";
+
+if(coinCh == 1) {
+
+System.out.println("Enter the pence to give");
+
+coinVal = sc.nextInt(); // Gets coin value
+
+sophie.setPence(coinVal);
+
+}
+
+else if(coinCh == 2) {
+
+System.out.println("Enter the shilling to give");
+
+coinVal = sc.nextInt(); // Gets coin value
+
+sophie.setShilling(coinVal);
+
+}
+
+else {
+
+sophie.fetchPurse(name,sophie); // Fetches the purse
+
+}
+
+}
+
+else {
+
+name = "Sally";
+
+if(coinCh == 1) {
+
+System.out.println("Enter the pence to give");
+
+coinVal = sc.nextInt();
+
+sally.setPence(coinVal);
+
+}
+
+else if(coinCh == 2) {
+
+System.out.println("Enter the shilling to give");
+
+coinVal = sc.nextInt();
+
+sally.setShilling(coinVal);
+
+}
+
+else {
+
+sally.fetchPurse(name,sally); // Fetches the purse
+
+}  
+
+}
+
+}
+
+}
